@@ -27,9 +27,9 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator SnapToPlayerView()
     {
-        // Blink effect here
+        
         yield return new WaitForSeconds(0.2f);
         mainCam.Follow = followTarget;
-        mainCam.LookAt = followTarget;
+        mainCam.LookAt = followTarget.GetComponent<PlayerController>().head;
     }
 }
