@@ -134,7 +134,7 @@ public class MatchManager : MonoBehaviour
         {
             if(i>=allSubPlayers.Count)
             {
-                allEnemies[i].target = allSubPlayers[0];
+                allEnemies[i].target = player;
                 return;
             }
             allEnemies[i].target= allSubPlayers[i];

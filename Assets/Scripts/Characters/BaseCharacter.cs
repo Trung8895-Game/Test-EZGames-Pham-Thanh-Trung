@@ -254,7 +254,7 @@ public abstract class BaseCharacter : MonoBehaviour
                 target.KidneyLeftHitVFX.gameObject.SetActive(false);
                 break;
             case AttackType.KidneyRight:
-                yield return new WaitForSeconds(1.25f);
+                yield return new WaitForSeconds(1.1f);
                 if (isAttacked)
                 {
                     isAttacked = false;
@@ -273,7 +273,7 @@ public abstract class BaseCharacter : MonoBehaviour
                     GainEnergy(10f);
                 }
 
-                yield return new WaitForSeconds(0.95f);
+                yield return new WaitForSeconds(1.1f);
                 target.KidneyRightHitVFX.gameObject.SetActive(false);
                 break;
             case AttackType.Stomach:
@@ -314,7 +314,7 @@ public abstract class BaseCharacter : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             RightHandFireVFX.gameObject.SetActive(true);
             LeftHandFireVFX.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            
             performCombo();
         }
     }

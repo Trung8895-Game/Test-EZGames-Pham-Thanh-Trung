@@ -26,9 +26,8 @@ public class LeanTouchController : MonoBehaviour
 
     private void HandleTap(LeanFinger finger)
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(finger.Index))
+        if (finger.IsOverGui == true)
         {
-           
             return;
         }
 
@@ -43,9 +42,8 @@ public class LeanTouchController : MonoBehaviour
 
     private void HandleSwipe(LeanFinger finger)
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(finger.Index))
+        if (finger.IsOverGui == true)
         {
-           
             return;
         }
 

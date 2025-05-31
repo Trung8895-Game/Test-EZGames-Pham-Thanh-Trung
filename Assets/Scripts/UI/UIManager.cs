@@ -10,15 +10,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countdownText;
 
     [SerializeField] private GameObject healthBarPrefab;
-    [SerializeField] private Transform healthBarParent;
+    [SerializeField] private Transform enemyHealthBarParent;
+    [SerializeField] private Transform playerHealthBarParent;
 
     [SerializeField] private GameObject energyBarPrefab;
-    [SerializeField] private Transform energyBarParent;
+    [SerializeField] private Transform enemyEnergyBarParent;
+    [SerializeField] private Transform playerEnergyBarParent;
 
     [SerializeField] private GameObject enemyImagePrefab;
     [SerializeField] private GameObject playerImagePrefab;
     [SerializeField] private GameObject subPlayerImagePrefab;
-    [SerializeField] private Transform imageParent;
+    [SerializeField] private Transform enemyImageParent;
+    [SerializeField] private Transform playerImageParent;
 
     [SerializeField] private VictoryLosePanel victoryLosePanel;
 
@@ -79,31 +82,52 @@ public class UIManager : MonoBehaviour
 
     public void RegisterCharacter(BaseCharacter character)
     {
-        var hb = Instantiate(healthBarPrefab, healthBarParent);
-        var ui = hb.GetComponent<HealthBarUI>();
-        ui.Setup(); 
-        healthBars.Add(character, ui);
-
-        var eb = Instantiate(energyBarPrefab, energyBarParent);
-        var energyBarUI = eb.GetComponent<EnergyBar>();
+        
+        
 
         switch(character.characterType)
         {
             case CharacterType.Player:
-               Instantiate(playerImagePrefab, imageParent);
+                var phb = Instantiate(healthBarPrefab, playerHealthBarParent);
+                var pui = phb.GetComponent<HealthBarUI>();
+                pui.Setup();
+                healthBars.Add(character, pui);
+
+                var peb = Instantiate(energyBarPrefab, playerEnergyBarParent);
+                var playerEnergyBarUI = peb.GetComponent<EnergyBar>();
+                Instantiate(playerImagePrefab, playerImageParent);
+                playerEnergyBarUI.Setup();
+                energyBars.Add(character, playerEnergyBarUI);
                 break;
             case CharacterType.SubPlayer:
-                Instantiate(subPlayerImagePrefab, imageParent);
+                var sphb = Instantiate(healthBarPrefab, playerHealthBarParent);
+                var spui = sphb.GetComponent<HealthBarUI>();
+                spui.Setup();
+                healthBars.Add(character, spui);
+
+                var speb = Instantiate(energyBarPrefab, playerEnergyBarParent);
+                var subPlayerEnergyBarUI = speb.GetComponent<EnergyBar>();
+                Instantiate(subPlayerImagePrefab, playerImageParent);
+                subPlayerEnergyBarUI.Setup();
+                energyBars.Add(character, subPlayerEnergyBarUI);
                 break;
             case CharacterType.Enemy:
-                Instantiate(enemyImagePrefab, imageParent);
+                var hb = Instantiate(healthBarPrefab, enemyHealthBarParent);
+                var ui = hb.GetComponent<HealthBarUI>();
+                ui.Setup();
+                healthBars.Add(character, ui);
+
+                var eb = Instantiate(energyBarPrefab, enemyEnergyBarParent);
+                var energyBarUI = eb.GetComponent<EnergyBar>();
+                Instantiate(enemyImagePrefab, enemyImageParent);
+                energyBarUI.Setup();
+                energyBars.Add(character, energyBarUI);
                 break;
             default:
                 break;
         }
 
-        energyBarUI.Setup(); 
-        energyBars.Add(character, energyBarUI);
+        
     }
 
     public void UpdateHealth(BaseCharacter character, float value)
