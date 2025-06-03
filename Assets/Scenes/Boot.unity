@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: d83cc97cde3bb42ce887c43570385966, type: 2}
-  currentLevelIndex: 3
+  currentLevelIndex: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
